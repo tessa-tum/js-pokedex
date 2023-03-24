@@ -1,0 +1,82 @@
+
+/* basics
+---------------------------------- */
+
+:root {
+  --color-canvas: #fffffe;
+  --color-cards: #f0e2e1;
+  --color-brand-primary:#4fc4cf;
+  --color-brand-secondary:#994ff3;
+  --color-brand-tertiary: #fbdd74;
+  --color-text-primary: #000;
+  --color-text-inverted: #fff;
+
+  --font-size-micro: 14px;
+  --font-size-milli: 16px;
+  --font-size-base: 18px;
+  --font-size-kilo: 24px;
+  --font-size-mega: 52px;
+
+  --font-weight-base: 400;
+  --font-weight-kilo: 700;
+
+  --line-height-base: 1.6;
+
+  --max-width-milli: 400px;
+  --max-width-base: 700px;
+  --max-width-kilo: 1200px;
+ }
+
+*{
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--color-canvas);
+  font-family: 'Mulish', sans-serif;
+  font-weight: var(--font-weight-base);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-base);
+  color: var(--color-text-primary);
+  padding: 20px;
+  margin: 10px; 
+}
+
+ /* header 
+---------------------------------- */
+
+.page-header {
+  display: flex;
+  width: 100%;
+  padding: 20px;
+  justify-content: center;
+}
+
+.navbar-brand {
+  color: #000;
+  font-size: var(--font-size-mega);
+}
+
+ /* profile
+---------------------------------- */
+
+.pokeball-brand-container {
+  max-width: var(--max-width-base);
+  margin: 0 auto;
+  display: flex;
+}
+
+.pokeball-brand-container__pic {
+  width: 60%;
+  height: auto;
+  margin: 0 auto 50px auto;
+  min-width: 250px;
+  max-width: 600px;
+}
+
+p {
+  text-align: center;
+}
+
+ /* to be continued
+---------------------------------- */
