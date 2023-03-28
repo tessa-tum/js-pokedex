@@ -1,4 +1,4 @@
-// testing creation of pokemon list array
+// create pokemon list array
 
 let pokemonList = [
   {name: 'Bulbasaur', height: 0.7, type: ['grass','poison']},
@@ -10,14 +10,22 @@ let pokemonList = [
   {name: 'Charizard', height:1.7, type:['fire','flying']},
 ];
 
-// testing for loop to display pokemon in the page DOM (with if-else statement), using <p> tag in JS string to separate lines
+// change for loop to forEach in order to display pokemon in the page DOM (with if-else statement), using <p> tag in JS string to separate lines
 
-for (let i = 0; i < pokemonList.length; i++) {
-  if (pokemonList[i].height > 1.8) {
-    document.write(`${pokemonList[i].name} (height: ${pokemonList[i].height}) - wow, that's big!` + '<p>');
-  } else {
-    document.write('<p>' + `${pokemonList[i].name} (height: ${pokemonList[i].height})` + '<p>');
-    }
-}
+// for (let i = 0; i < pokemonList.length; i++) {
+//   if (pokemonList[i].height > 1.8) {
+//     document.write('<p>' + `${pokemonList[i].name} (height: ${pokemonList[i].height}) - wow, that's big!` + '</p>');
+//   } else {
+//     document.write('<p>' + `${pokemonList[i].name} (height: ${pokemonList[i].height})` + '</p>');
+//     }
+// }
+
+pokemonList.forEach(function(pokemon){
+  if (pokemon.height > 1.5) {
+    document.write('<p>' + `${pokemon.name} (height: ${pokemon.height}) - Wow! That's big!`+ '</p>');
+} else {
+  document.write('<p>' + `${pokemon.name} (height: ${pokemon.height})` + '</p>');
+} 
+});
    
 
