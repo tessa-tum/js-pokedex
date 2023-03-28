@@ -1,16 +1,31 @@
-// create pokemon list array
+// create pokemon list array, wrap in IIFE
 
-let pokemonList = [
-  {name: 'Bulbasaur', height: 0.7, type: ['grass','poison']},
-  {name: 'Ivysaur', height: 1, type: ['grass','poison']},
-  {name: 'Venusaur', height:2, type:['grass','poison']},
+let pokemonRepository = (function() {
+  let pokemonList = [
+    {name: 'Bulbasaur', height: 0.7, type: ['grass','poison']},
+    {name: 'Ivysaur', height: 1, type: ['grass','poison']},
+    {name: 'Venusaur', height:2, type:['grass','poison']},
 
-  {name: 'Charmander', height:0.6, type:['fire']},
-  {name: 'Charmeleon', height:1.1, type:['fire']},
-  {name: 'Charizard', height:1.7, type:['fire','flying']},
-];
+    {name: 'Charmander', height:0.6, type:['fire']},
+    {name: 'Charmeleon', height:1.1, type:['fire']},
+    {name: 'Charizard', height:1.7, type:['fire','flying']},
+  ];
+  
+  function add(item) {
+    pokemonList.push(item);
+  }
 
-// change for loop to forEach in order to display pokemon in the page DOM (with if-else statement), using <p> tag in JS string to separate lines
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
+}) ();
+
+// change for loop to forEach method
 
 // for (let i = 0; i < pokemonList.length; i++) {
 //   if (pokemonList[i].height > 1.8) {
@@ -20,12 +35,20 @@ let pokemonList = [
 //     }
 // }
 
-pokemonList.forEach(function(pokemon){
+// pokemonList.forEach(function(pokemon){
+//   if (pokemon.height > 1.5) {
+//     document.write('<p>' + `${pokemon.name} (height: ${pokemon.height}) - Wow! That's big!`+ '</p>');
+// } else {
+//   document.write('<p>' + `${pokemon.name} (height: ${pokemon.height})` + '</p>');
+// } 
+// });
+
+//Update forEach loop so that it can access the wrapped pokemonList array
+   
+pokemonRepository.getAll().forEach(function(pokemon){
   if (pokemon.height > 1.5) {
     document.write('<p>' + `${pokemon.name} (height: ${pokemon.height}) - Wow! That's big!`+ '</p>');
 } else {
   document.write('<p>' + `${pokemon.name} (height: ${pokemon.height})` + '</p>');
 } 
 });
-   
-
