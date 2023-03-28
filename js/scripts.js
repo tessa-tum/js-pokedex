@@ -12,7 +12,22 @@ let pokemonRepository = (function() {
   ];
   
   function add(item) {
-    pokemonList.push(item);
+    let keys = Object.keys(item);
+    let validKeys = ['name', 'height', 'type'];
+    if (typeof item === 'object' &&
+        keys.every(function(key) {
+            return validKeys.includes(key);
+        })) {
+        pokemonList.push(item);
+    } else {
+        console.log('Invalid entry');
+    }
+  }
+
+  function findByName(name) {
+    return pokemonList.filter(function(item) {
+      return item.name.toLowerCase() === name.toLowerCase();
+    });
   }
 
   function getAll() {
@@ -21,7 +36,8 @@ let pokemonRepository = (function() {
 
   return {
     add: add,
-    getAll: getAll
+    getAll: getAll,
+    findByName: findByName
   };
 }) ();
 
