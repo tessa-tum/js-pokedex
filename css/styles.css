@@ -3,6 +3,7 @@
 ---------------------------------- */
 
 :root {
+  box-sizing: border-box;
   --color-canvas: #fffffe;
   --color-cards: #f0e2e1;
   --color-brand-primary:#4fc4cf;
@@ -11,11 +12,11 @@
   --color-text-primary: #000;
   --color-text-inverted: #fff;
 
-  --font-size-micro: 14px;
-  --font-size-milli: 16px;
-  --font-size-base: 18px;
+  --font-size-micro: 16px;
+  --font-size-milli: 18px;
+  --font-size-base: 20px;
   --font-size-kilo: 24px;
-  --font-size-mega: 52px;
+  --font-size-mega: 60px;
 
   --font-weight-base: 400;
   --font-weight-kilo: 700;
@@ -27,56 +28,90 @@
   --max-width-kilo: 1200px;
  }
 
-*{
-  box-sizing: border-box;
-}
-
 body {
+  display: flex;
+  flex-direction: column;
   background-color: var(--color-canvas);
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Nunito Sans', sans-serif;
   font-weight: var(--font-weight-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-text-primary);
-  padding: 20px;
   margin: 10px; 
 }
 
  /* header 
 ---------------------------------- */
 
-.page-header {
-  display: flex;
-  width: 100%;
-  padding: 20px;
-  justify-content: center;
-}
-
-.navbar-brand {
-  color: #000;
+h1 {
   font-size: var(--font-size-mega);
+  color: var(--color-text-inverted);
+  text-align: center;
+  font-weight: var(--font-weight-kilo);
+  -webkit-text-stroke: 3px var(--color-text-primary);
 }
 
- /* profile
+ /* hero image
 ---------------------------------- */
 
 .pokeball-brand-container {
-  max-width: var(--max-width-base);
   margin: 0 auto;
-  display: flex;
+  margin-top: -25px;
 }
 
 .pokeball-brand-container__pic {
-  width: 60%;
-  height: auto;
-  margin: 0 auto 50px auto;
+  margin: 0 auto;
   min-width: 250px;
   max-width: 600px;
 }
 
-p {
+ /* main
+---------------------------------- */
+
+.pokemon-list {
   text-align: center;
+  list-style-type: none;
+  padding: 0px;
 }
 
- /* to be continued
+.button-class {
+  font-family: inherit;
+  width: 50%;
+  list-style-type: none;
+  padding: 30px;
+  border-radius: 2px;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-kilo);
+  margin-bottom: 30px;
+  border: 3px solid var(--color-text-primary);
+  color: var(--color-text-primary);
+  background-color: var(--color-brand-primary);
+  box-shadow: 2px 2px 2px var(--color-text-primary);
+}
+
+.button-class:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-primary);
+  box-shadow: 2px 2px 2px var(--color-text-primary);
+  border-color: var(--color-text-primary);
+}
+
+.button-class:active {
+  transform: scale(1.1);
+  background-color: var(--color-brand-primary);
+  color: var(--color-text-primary);
+  box-shadow: 2px 2px 2px var(--color-text-primary);
+  border-color: var(--color-text-primary);
+  opacity: .7;
+}
+
+ /* responsive
 ---------------------------------- */
+
+@media all and (max-width: 1200px) {
+  .button-class {
+    width: 80%;
+  }
+}
