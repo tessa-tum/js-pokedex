@@ -29,15 +29,13 @@
  }
 
 body {
-  display: flex;
-  flex-direction: column;
   background-color: var(--color-canvas);
   font-family: 'Nunito Sans', sans-serif;
   font-weight: var(--font-weight-base);
   font-size: var(--font-size-base);
   line-height: var(--line-height-base);
   color: var(--color-text-primary);
-  margin: 10px; 
+  margin: 50px; 
 }
 
  /* header 
@@ -54,35 +52,41 @@ h1 {
  /* hero image
 ---------------------------------- */
 
-.pokeball-brand-container {
-  margin: 0 auto;
-  margin-top: -25px;
-}
-
-.pokeball-brand-container__pic {
+.pokeball {
+  display: block;
+  width: 20%;
+  height: auto;
   margin: 0 auto;
   min-width: 250px;
   max-width: 600px;
+  margin-top: -20px;
 }
 
  /* main
 ---------------------------------- */
 
 .pokemon-list {
-  text-align: center;
-  list-style-type: none;
-  padding: 0px;
+    padding: 25px 0 50px 0;
+    list-style: none;
+    /*----Start grid fallback----*/
+    display: flex; 
+    flex-wrap: wrap;
+    justify-content: center;
+    /*----End grid fallback----*/
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
 }
 
 .button-class {
   font-family: inherit;
-  width: 50%;
+  width: 100%;
   list-style-type: none;
   padding: 30px;
   border-radius: 2px;
   font-size: var(--font-size-base);
   font-weight: var(--font-weight-kilo);
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   border: 3px solid var(--color-text-primary);
   color: var(--color-text-primary);
   background-color: var(--color-brand-primary);
@@ -92,8 +96,8 @@ h1 {
 .button-class:hover {
   cursor: pointer;
   transform: scale(1.1);
-  background-color: var(--color-brand-primary);
-  color: var(--color-text-primary);
+  background-color: var(--color-brand-secondary);
+  color: var(--color-text-inverted);
   box-shadow: 2px 2px 2px var(--color-text-primary);
   border-color: var(--color-text-primary);
 }
@@ -110,8 +114,20 @@ h1 {
  /* responsive
 ---------------------------------- */
 
-@media all and (max-width: 1200px) {
+@media all and (max-width: 1080px) {
+  .pokemon-list{
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+  }
+
+@media all and (max-width: 576px) {
+  .pokemon-list{
+      flex-direction: column;
+      grid-template-columns: 1fr;
+      gap: 25px;
+    }
   .button-class {
-    width: 80%;
+    padding: 20px;
   }
 }
