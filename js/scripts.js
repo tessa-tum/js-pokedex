@@ -1,45 +1,47 @@
-// create pokemon list array, wrap in IIFE
-
+// start IIFE
 let pokemonRepository = (function() {
-  let pokemonList = [
-    {name: 'Bulbasaur', height: 0.7, type: ['grass','poison']},
-    {name: 'Ivysaur', height: 1, type: ['grass','poison']},
-    {name: 'Venusaur', height:2, type:['grass','poison']},
-
-    {name: 'Charmander', height:0.6, type:['fire']},
-    {name: 'Charmeleon', height:1.1, type:['fire']},
-    {name: 'Charizard', height:1.7, type:['fire','flying']},
-  ];
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
   
-  // create add function to add single items to the pokemonList, validate type of data and object.keys of the parameter
+  // add single items to pokemon list, validate type of data and keys
+  function add(pokemon) {
+    if (
+      typeof pokemon === 'object' &&
+      'name' in pokemon &&
+      'detailsUrl' in pokemon
+    ) {
+      pokemonList.push(pokemon);
+    } else {console.log('error');
+  }
+  }
+  
+  // check why more detailed add function does not work:
+  // function add(item) {
+  //   let keys = Object.keys(item);
+  //   let validKeys = ['name', 'height', 'type'];
+  //   if (typeof item === 'object' &&
+  //       keys.every(function(key) {
+  //           return validKeys.includes(key);
+  //       })) {
+  //       pokemonList.push(item);
+  //   } else {
+  //       console.log('Invalid entry');
+  //   }
+  // }
 
-  function add(item) {
-    let keys = Object.keys(item);
-    let validKeys = ['name', 'height', 'type'];
-    if (typeof item === 'object' &&
-        keys.every(function(key) {
-            return validKeys.includes(key);
-        })) {
-        pokemonList.push(item);
-    } else {
-        console.log('Invalid entry');
-    }
+  // retrieve list
+  function getAll() {
+    return pokemonList;
   }
 
   // create filter function to find specific pokemon only by name
-
   function findByName(name) {
     return pokemonList.filter(function(item) {
       return item.name.toLowerCase() === name.toLowerCase();
     });
   }
 
-  function getAll() {
-    return pokemonList;
-  }
-
-  // create addListItem function to render and style the pokemonList, incl. event listener for a click event that logs the clicked pokemon's name
-
+  // render and style the pokemon list, incl. event listener for a click event that logs the clicked pokemon's name
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon-list');
     let listPokemon = document.createElement('li');
@@ -51,22 +53,61 @@ let pokemonRepository = (function() {
     button.addEventListener('click', function() {
       showDetails(pokemon);
     });
-    }
+  }
 
-    function showDetails(pokemon) {
-      console.log(pokemon.name);
-    }
+  // fetch data for 150 pokemon from pokeapi and add pokemons as objects (name + detailsUrl)
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name,
+          detailsUrl: item.url
+        };
+        add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
 
+  // get data for each pokemon from detailsUrl (image + height + types)
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  // execute loadDetails() when pokemon is clicked (logs pokemon object details to console)
+  function showDetails(item) {
+    loadDetails(item).then(function () {
+      console.log(item);
+    });
+  }
+
+  // make functions accessible outside IIFE
   return {
     add: add,
     getAll: getAll,
     findByName: findByName,
-    addListItem: addListItem
+    addListItem: addListItem,
+    loadList: loadList,
+    loadDetails: loadDetails,
+    showDetails: showDetails
   };
-}) ();
+}) (); // end IIFE
 
-//create forEach loop to access the wrapped pokemonList array
-   
-pokemonRepository.getAll().forEach(function(pokemon){
-  pokemonRepository.addListItem(pokemon);
-});
+//load pokemon list, then call getAll and forEach functions, return created items
+pokemonRepository.loadList().then(function() {
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
+})
