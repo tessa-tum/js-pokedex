@@ -8,11 +8,12 @@
   --c-secondary: #242629;
   --c-tertiary: #f25f4c;
   --c-text: #fff;
+  --c-modal: #fff;
 
   --fs-micro: 16px;
   --fs-milli: 18px;
   --fs-base: 24px;
-  --fs-kilo: 24px;
+  --fs-kilo: 40px;
   --fs-mega: 90px;
  }
 
@@ -66,7 +67,7 @@ h1 {
   /*----End grid fallback----*/
   display: grid; 
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 0 auto;
+  text-align: center;
   gap: 50px;
   padding: 60px;
 }
@@ -93,6 +94,70 @@ h1 {
   color: var(--c-text);
 }
 
+ /* pokemon modal
+---------------------------------- */
+
+#modal-container {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background:rgba(0, 0, 0, 0.8);
+  z-index: 999; 
+  overflow: auto; 
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: var(--c-modal);
+  color:#242629;
+  padding: 15px;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  box-shadow: 10px 10px var(--c-tertiary);
+}
+
+.modal-close {
+  float: right;
+  appearance: none;
+  background: none;
+  color:#f25f4c;
+  text-transform: uppercase;
+}
+
+.modal h1 {
+  text-transform:capitalize;
+  color:#242629;
+}
+
+.modal p {
+  margin-bottom: 0;
+}
+
+.modal img {
+  display: block;
+  margin: 0 auto;
+  width: 30%;
+  height: auto;
+}
+
+#modal-container {
+  display: none;
+}
+
+#modal-container.is-visible {
+  /* CSS for modal container - add your own desired CSS styles here */
+  display: block;
+}
+
  /* responsive
 ---------------------------------- */
 
@@ -100,16 +165,45 @@ h1 {
   .pokemon-list {
     grid-template-columns: 1fr;
   }
+  .modal {
+    font-size: var(--fs-milli)
+  }
+  .modal h1 {
+    font-size: var(--fs-kilo);
+  }
+  .modal-close {
+    font-size: 8px;
+  }
 }
 
 @media all and (min-width: 500px) and (max-width: 750px) {
   .pokemon-list {
     grid-template-columns: 1fr 1fr;
   }
+  .modal {
+    width: 80%;
+    font-size: var(--fs-milli)
+  }
+  .modal h1 {
+    font-size: var(--fs-kilo);
+  }
+  .modal-close {
+    font-size: 8px;
+  }
 }
 
 @media all and (min-width: 750px) and (max-width: 1024px) {
   .pokemon-list {
     grid-template-columns: 1fr 1fr;
+  }
+  .modal {
+    width: 70%;
+    font-size: var(--fs-base);
+  }
+  .modal h1 {
+    font-size: var(--fs-mega);
+  }
+  .modal-close {
+    font-size: 12px;
   }
 }
