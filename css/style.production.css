@@ -1,0 +1,197 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
+/* basics
+---------------------------------- */
+
+:root {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  --c-primary: #084152;
+  --c-secondary: #242629;
+  --c-tertiary: #f25f4c;
+  --c-text: #fff;
+  --c-modal: #fff;
+
+  --fs-micro: 16px;
+  --fs-milli: 18px;
+  --fs-base: 24px;
+  --fs-kilo: 40px;
+  --fs-mega: 90px;
+ }
+
+body {
+  background: var(--c-primary);
+  font-family: 'Ubuntu', sans-serif;
+  font-size: var(--fs-base);
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--c-text);
+}
+
+ /* header 
+---------------------------------- */
+
+.navbar {
+  background-color:#084152;
+  display: block;
+  text-align: center;
+}
+
+.navbar-brand {
+  margin: 0 auto;
+  font-size: var(--fs-mega);
+  color: var(--c-text);
+  font-weight: 400;
+  font-family: 'Teko', sans-serif;
+  letter-spacing: 0.2rem;
+}
+
+.navbar-brand:hover {
+  color: var(--c-tertiary);
+}
+
+.form-inline {
+  display: block;
+  margin-bottom: 50px;
+}
+
+.search {
+  border-radius: 0;
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: var(--black);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.search::-webkit-input-placeholder {
+  color: #fff;
+  opacity: 2;
+  font-style: italic;
+}
+
+.search::-moz-placeholder {
+  color: #fff;
+  opacity: 2;
+  font-style: italic;
+}
+
+.search:-ms-input-placeholder {
+  color: #fff;
+  opacity: 2;
+  font-style: italic;
+}
+
+.search::-ms-input-placeholder {
+  color: #fff;
+  opacity: 2;
+  font-style: italic;
+}
+
+.search::placeholder {
+  color: #fff;
+  opacity: 2;
+  font-style: italic;
+}
+
+ /* main
+---------------------------------- */
+
+.pokeball {
+  display: block;
+  width: 25%;
+  height: auto;
+  min-width: 250px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.pokemon-list {
+  border: none;
+  list-style-type: none;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-color: transparent;
+  text-align: center;
+  padding: 30px;
+}
+
+.list-group-item {
+  background-color: transparent;
+  border: none;
+}
+
+.btn-custom {
+  width: 100%;
+  height: auto;
+  font-family: 'Ubuntu', sans-serif;
+  letter-spacing: 0.1rem;
+  list-style-type: none;
+  font-size: var(--fs-base);
+  font-weight: 400;
+  color: var(--c-text);
+  background: var(--c-tertiary);
+  text-transform:capitalize;
+  -webkit-box-shadow: 5px 5px var(--c-text);
+          box-shadow: 5px 5px var(--c-text);
+  padding: 30px 30px;
+  border-radius: 0px;
+}
+
+.btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(1.07);
+      -ms-transform: scale(1.07);
+          transform: scale(1.07);
+  background-color: var(--c-primary);
+  color: var(--c-text);
+  border: solid 2px #fff;
+}
+
+ /* pokemon modal
+---------------------------------- */
+
+.modal-content {
+  color:#242629;
+  text-align: center;
+  -webkit-box-shadow: 10px 10px var(--c-tertiary);
+          box-shadow: 10px 10px var(--c-tertiary);
+}
+
+.modal-close {
+  float: right;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background: none;
+  color:#f25f4c;
+  text-transform: uppercase;
+}
+
+.modal h1 {
+  text-transform: capitalize;
+  color: #242629;
+}
+
+.modal p {
+  margin-bottom: 10px;
+}
+
+.modal img {
+  display: block;
+  margin: 30px auto;
+  width: 30%;
+  height: auto;
+} 
+
+.pokemon-type {
+  text-transform: capitalize;
+  list-style-type: none;
+  margin-bottom: 10px;
+}
