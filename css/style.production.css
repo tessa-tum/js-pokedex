@@ -11,11 +11,11 @@
 :root {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
-  --c-primary: #084152;
-  --c-secondary: #242629;
-  --c-tertiary: #f25f4c;
-  --c-text: #fff;
-  --c-modal: #fff;
+  --green: #084152;
+  --black: #242629;
+  --red: #f25f4c;
+  --yellow: #EEB45A;
+  --white: #fff;
 
   --fs-micro: 16px;
   --fs-milli: 18px;
@@ -25,19 +25,19 @@
  }
 
 body {
-  background: var(--c-primary);
+  background: var(--green);
   font-family: 'Ubuntu', sans-serif;
   font-size: var(--fs-base);
   font-weight: 400;
   line-height: 1.6;
-  color: var(--c-text);
+  color: var(--white);
 }
 
  /* header 
 ---------------------------------- */
 
 .navbar {
-  background-color:#084152;
+  background-color:var(--green);
   display: block;
   text-align: center;
 }
@@ -45,14 +45,14 @@ body {
 .navbar-brand {
   margin: 0 auto;
   font-size: var(--fs-mega);
-  color: var(--c-text);
+  color: var(--white);
   font-weight: 400;
   font-family: 'Teko', sans-serif;
   letter-spacing: 0.2rem;
 }
 
 .navbar-brand:hover {
-  color: var(--c-tertiary);
+  color: var(--red);
 }
 
 .form-inline {
@@ -63,38 +63,38 @@ body {
 .search {
   border-radius: 0;
   background-color: transparent;
-  border: 2px solid #fff;
+  border: 2px solid var(--white);
   color: var(--black);
   border-radius: 8px;
   text-align: center;
 }
 
 .search::-webkit-input-placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 2;
   font-style: italic;
 }
 
 .search::-moz-placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 2;
   font-style: italic;
 }
 
 .search:-ms-input-placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 2;
   font-style: italic;
 }
 
 .search::-ms-input-placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 2;
   font-style: italic;
 }
 
 .search::placeholder {
-  color: #fff;
+  color: var(--white);
   opacity: 2;
   font-style: italic;
 }
@@ -127,7 +127,7 @@ body {
   border: none;
 }
 
-.btn-custom {
+.btn-pokemon {
   width: 100%;
   height: auto;
   font-family: 'Ubuntu', sans-serif;
@@ -135,11 +135,11 @@ body {
   list-style-type: none;
   font-size: var(--fs-base);
   font-weight: 400;
-  color: var(--c-text);
-  background: var(--c-tertiary);
+  color: var(--white);
+  background: var(--red);
   text-transform:capitalize;
-  -webkit-box-shadow: 5px 5px var(--c-text);
-          box-shadow: 5px 5px var(--c-text);
+  -webkit-box-shadow: 5px 5px var(--white);
+          box-shadow: 5px 5px var(--white);
   padding: 30px 30px;
   border-radius: 0px;
 }
@@ -149,38 +149,36 @@ body {
   -webkit-transform: scale(1.07);
       -ms-transform: scale(1.07);
           transform: scale(1.07);
-  background-color: var(--c-primary);
-  color: var(--c-text);
-  border: solid 2px #fff;
+  background-color: var(--green);
+  color: var(--white);
+  border: solid 2px var(--white);
 }
 
  /* pokemon modal
 ---------------------------------- */
 
 .modal-content {
-  color:#242629;
-  text-align: center;
-  -webkit-box-shadow: 10px 10px var(--c-tertiary);
-          box-shadow: 10px 10px var(--c-tertiary);
+  color: var(--black);
+  font-size: 80%;
+  font-family: inherit;
+  -webkit-box-shadow: 10px 10px var(--yellow);
+          box-shadow: 10px 10px var(--yellow);
+  background-color: lightgray;
+  padding:0px 20px;
 }
 
-.modal-close {
-  float: right;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
-  background: none;
-  color:#f25f4c;
-  text-transform: uppercase;
+.modal-header {
+  background-color:lightgray;
 }
 
 .modal h1 {
   text-transform: capitalize;
-  color: #242629;
+  color: var(--black);
 }
 
 .modal p {
   margin-bottom: 10px;
+  text-transform: capitalize;
 }
 
 .modal img {
@@ -190,8 +188,29 @@ body {
   height: auto;
 } 
 
-.pokemon-type {
-  text-transform: capitalize;
-  list-style-type: none;
-  margin-bottom: 10px;
+.btn-modal {
+  background-color: var(--yellow);
+  color:var(--white);
+  text-transform: uppercase;
+  font-size: 50%;
+}
+
+ /* footer
+---------------------------------- */
+
+footer {
+  padding: 50px 20px;
+  text-align: center;
+  color: var(--white);
+  line-height: 1.2em;
+  font-size: var(--fs-milli);
+}
+
+footer a {
+  color: var(--white);;
+  text-decoration: underline;
+}
+
+footer a:hover {
+  color: var(--red);
 }
