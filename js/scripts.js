@@ -54,7 +54,7 @@ let pokemonRepository = (function() {
     listPokemon.classList.add("list-group-item");
     button.innerText = pokemon.name;
     button.classList.add('btn');
-    button.classList.add('btn-custom');
+    button.classList.add('btn-pokemon');
     button.setAttribute('data-toggle', 'modal');
     button.setAttribute('data-target', '#pokemon-modal');
     listPokemon.classList.add('col-xl-3');
@@ -89,24 +89,26 @@ let pokemonRepository = (function() {
     let imageElementFr = $('<img class="modal-img">');
     imageElementFr.attr('src', item.imageUrl);
 
-    let idElement = $('<p>' + '<span style="font-weight: bold">#ID: </span>' + item.id + '</p>');
+    let idElement = $('<p>' + '<span style="font-weight: bold"># </span>' 
+    + item.id + '</p>');
 
-    let heightElement = $('<p>' + '<span style="font-weight: bold">Height: </span>' + item.height + '</p>');
+    let heightElement = $('<p>' + '<span style="font-weight: bold">Height: </span>' 
+    + item.height + '</p>');
+
+    let typeElement = $('<p>' + '<span style="font-weight: bold">Types: </span>' 
+    + item.types.map((type) => type.type.name).join(" | ") + '</p>');
+
+    let abilityElement = $('<p>' + '<span style="font-weight: bold">Abilities: </span>' 
+    + item.abilities.map((ability) => ability.ability.name).join(" | ") + '</p>');
 
     modalTitle.append(nameElement);
     modalBody.append(imageElementFr);
     modalBody.append(idElement);
     modalBody.append(heightElement);
-
-    let types = item.types;
-    modalBody.append('<p style="font-weight: bold">Types:</p>');
-
-    let typeNames = [];
-    types.forEach(e => {
-      typeNames += ['<li class="pokemon-type">' + e.type.name + '</li>'];
-    })
-
-    modalBody.append(typeNames);
+    modalBody.append(typeElement);
+    modalBody.append(abilityElement);
+    
+    modalBody.prepend(imageElement); // Inserting image element at the beginning of modalBody
   }
 
   // fetch data for 150 pokemon from pokeapi and add pokemons as objects (name + detailsUrl)
@@ -135,7 +137,8 @@ let pokemonRepository = (function() {
       item.imageUrl = details.sprites.other.dream_world.front_default;
       item.height = details.height;
       item.types = details.types;
-      item.id = details.id
+      item.id = details.id;
+      item.abilities = details.abilities
     }).catch(function (e) {
       console.error(e);
     });
