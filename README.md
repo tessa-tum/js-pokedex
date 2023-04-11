@@ -27,7 +27,7 @@ I implemented a search/filter function that allows users to search for a Pokémo
 - [Bootstrap](https://getbootstrap.com/docs/5.3/getting-started/introduction/)
 - [Promise Polyfill](https://github.com/taylorhakes/promise-polyfill)
 - [Fetch Polyfill](https://github.com/github/fetch)
-- [jQuery] (https://releases.jquery.com/jquery/)
+- [jQuery](https://releases.jquery.com/jquery/)
 
 ## Interface
 
