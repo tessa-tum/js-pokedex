@@ -1,10 +1,10 @@
 // start pokemonRepository IIFE
-let pokemonRepository = (function () {
+let pokemonRepository = (() => {
   let pokemonList = [];
   let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
   // add single items to pokemon list, validate type of data and keys
-  function add(pokemon) {
+  const add = (pokemon) => {
     if (
       typeof pokemon === "object" &&
       "name" in pokemon &&
@@ -14,42 +14,42 @@ let pokemonRepository = (function () {
     } else {
       console.log("error");
     }
-  }
+  };
 
   // retrieve list
-  function getAll() {
+  const getAll = () => {
     return pokemonList;
-  }
+  };
 
   // trigger search function
   const searchInput = document.getElementById("searchInput");
-  searchInput.addEventListener("input", function () {
+  searchInput.addEventListener("input", () => {
     findByName(searchInput.value);
   });
 
   // search function to find specific pokemon by name
-  function findByName(searchInput) {
-    const filteredPokemonList = pokemonList.filter(function (pokemon) {
+  const findByName = (searchInput) => {
+    const filteredPokemonList = pokemonList.filter((pokemon) => {
       return pokemon.name.toLowerCase().includes(searchInput.toLowerCase());
     });
 
-    let pokemonListElement = document.querySelector(".pokemon-list");
+    const pokemonListElement = document.querySelector(".pokemon-list");
     pokemonListElement.innerHTML = [];
 
-    filteredPokemonList.forEach(function (pokemon) {
+    filteredPokemonList.forEach((pokemon) => {
       pokemonRepository.addListItem(pokemon);
     });
-  }
+  };
 
   /*
    * function to render and style the pokemon list,
    * toggle modal,
    * add event listener for button click loading respective pokemon data
    */
-  function addListItem(pokemon) {
-    let pokemonList = document.querySelector(".pokemon-list");
-    let listPokemon = document.createElement("li");
-    let button = document.createElement("button");
+  const addListItem = (pokemon) => {
+    const pokemonList = document.querySelector(".pokemon-list");
+    const listPokemon = document.createElement("li");
+    const button = document.createElement("button");
 
     listPokemon.classList.add("list-group-item");
     button.innerText = pokemon.name;
@@ -64,54 +64,51 @@ let pokemonRepository = (function () {
     listPokemon.appendChild(button);
     pokemonList.appendChild(listPokemon);
 
-    button.addEventListener("click", function () {
+    button.addEventListener("click", () => {
       showDetails(pokemon);
     });
-  }
+  };
 
   // execute loadDetails() when pokemon is clicked (logs pokemon object details to modal)
-  function showDetails(item) {
-    loadDetails(item).then(function () {
+  const showDetails = (item) => {
+    loadDetails(item).then(() => {
       showModal(item);
     });
-  }
+  };
 
   // display a modal containing pokemon details
-  function showModal(item) {
-    let modalBody = $(".modal-body");
-    let modalTitle = $(".modal-title");
+  const showModal = (item) => {
+    const modalBody = $(".modal-body");
+    const modalTitle = $(".modal-title");
 
     modalTitle.empty();
     modalBody.empty();
 
-    let nameElement = $("<h1>" + item.name + "</h1>");
+    const nameElement = $(`<h1>${item.name}</h1>`);
 
-    let imageElementFr = $('<img class="modal-img">');
-    imageElementFr.attr("src", item.imageUrl);
-
-    let idElement = $(
-      "<p>" + '<span style="font-weight: bold"># </span>' + item.id + "</p>"
+    const imageElementFr = $('<img class="modal-img">').attr(
+      "src",
+      item.imageUrl
     );
 
-    let heightElement = $(
-      "<p>" +
-        '<span style="font-weight: bold">Height: </span>' +
-        item.height +
-        "</p>"
+    const idElement = $(
+      `<p><span style="font-weight: bold"># </span>${item.id}</p>`
     );
 
-    let typeElement = $(
-      "<p>" +
-        '<span style="font-weight: bold">Types: </span>' +
-        item.types.map((type) => type.type.name).join(" | ") +
-        "</p>"
+    const heightElement = $(
+      `<p><span style="font-weight: bold">Height: </span>${item.height}</p>`
     );
 
-    let abilityElement = $(
-      "<p>" +
-        '<span style="font-weight: bold">Abilities: </span>' +
-        item.abilities.map((ability) => ability.ability.name).join(" | ") +
-        "</p>"
+    const typeElement = $(
+      `<p><span style="font-weight: bold">Types: </span>${item.types
+        .map((type) => type.type.name)
+        .join(" | ")}</p>`
+    );
+
+    const abilityElement = $(
+      `<p><span style="font-weight: bold">Abilities: </span>${item.abilities
+        .map((ability) => ability.ability.name)
+        .join(" | ")}</p>`
     );
 
     modalTitle.append(nameElement);
@@ -120,48 +117,46 @@ let pokemonRepository = (function () {
     modalBody.append(heightElement);
     modalBody.append(typeElement);
     modalBody.append(abilityElement);
-
-    modalBody.prepend(imageElementFr); // Inserting image element at the beginning of modalBody
-  }
+  };
 
   // fetch data for 150 pokemon from pokeapi and add pokemons as objects (name + detailsUrl)
-  function loadList() {
+  const loadList = () => {
     return fetch(apiUrl)
-      .then(function (response) {
+      .then((response) => {
         return response.json();
       })
-      .then(function (json) {
-        json.results.forEach(function (item) {
-          let pokemon = {
+      .then((json) => {
+        json.results.forEach((item) => {
+          const pokemon = {
             name: item.name,
             detailsUrl: item.url,
           };
           add(pokemon);
         });
       })
-      .catch(function (e) {
+      .catch((e) => {
         console.error(e);
       });
-  }
+  };
 
   // get data for each pokemon from detailsUrl (image + height + types)
-  function loadDetails(item) {
-    let url = item.detailsUrl;
+  const loadDetails = (item) => {
+    const url = item.detailsUrl;
     return fetch(url)
-      .then(function (response) {
+      .then((response) => {
         return response.json();
       })
-      .then(function (details) {
+      .then((details) => {
         item.imageUrl = details.sprites.other.dream_world.front_default;
         item.height = details.height;
         item.types = details.types;
         item.id = details.id;
         item.abilities = details.abilities;
       })
-      .catch(function (e) {
+      .catch((e) => {
         console.error(e);
       });
-  }
+  };
 
   // make functions accessible outside IIFE
   return {
@@ -178,8 +173,8 @@ let pokemonRepository = (function () {
 // end pokemonRepository IIFE
 
 // load pokemon list, then call getAll and forEach functions, return created items
-pokemonRepository.loadList().then(function () {
-  pokemonRepository.getAll().forEach(function (pokemon) {
+pokemonRepository.loadList().then(() => {
+  pokemonRepository.getAll().forEach((pokemon) => {
     pokemonRepository.addListItem(pokemon);
   });
 });
