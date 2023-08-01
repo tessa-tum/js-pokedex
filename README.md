@@ -24,11 +24,13 @@ Mobile view of home page
 ## Built with
 
 ### Languages
+
 - HTML
 - CSS
 - JavaScript
 
 ### Framework, Libraries, Tools
+
 - Bootstrap
 - [jQuery min to replace jQuery slim](https://releases.jquery.com/)
 - Polyfill for promises
@@ -37,6 +39,13 @@ Mobile view of home page
 - Autoprefixer
 - [Minify CSS](https://www.toptal.com/developers/cssminifier)
 - [Minify JS](https://www.toptal.com/developers/javascript-minifier)
+
+## Features
+
+- HTML, CSS and JavaScript from scratch
+- Bootstrap (CSS, JS), Bootstrap's Navbar Component, Bootstrap's Modal Component
+- Modal that displays fetched Pokémon details
+- Dynamically created HTML elements 
 
 ## How to run 
 
